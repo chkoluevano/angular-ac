@@ -5,50 +5,23 @@
 	<title>Document</title>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+	
+
 	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/controllers/controllers.js"></script>
+	<script type="text/javascript" src="js/services/services.js"></script>
+
+
 </head>
 
 
 
-<body ng-controller="AtencionController">
-		Busqueda: <input ng-model="$ctrl.query" />
+<body>
 
-    	<table border="1">
-    		<tr>
-		    	<td>Folio</td>
-		    	<td>Fecha</td>
-		    	<td>Origen</td>
-		    	<td>descripcion</td>
-		    	<td>peticion</td>
-		    	<td>direccion</td>
-		    	<td>ACCIONES</td>
+      <div class="container" ng-view=""></div>
 
-		  </tr>
-		  <tr ng-repeat="x in todos | filter:$ctrl.query">
-		  		<td>{{ x.folio }}</td>
-		  		<td>{{ x.fecha }}</td>
-		  		<td>{{ x.origen }}</td>
-		  		<td>{{ x.descripcion }}</td>
-		  		<td>{{ x._peticion.nombre }}</td>
-		  		<td>{{ x.direccion_reporte.calle   + " " +  x.direccion_reporte.numero  + " "  + x.direccion_reporte.colonia }}</td>
-		  		<td><button type="submit"  ng-click="deleteAsunto(x)">borrar</button></td>
-		  </tr>
-		</table>
-
-		<div id="todo-form" class="row">
-            <div >
-                <form>
-					<input type="text" ng-model="formData.folio" placeholder="folio">
-					<input type="text" ng-model="formData.descripcion" placeholder="descripcion">
-					<input type="text" ng-model="formData.calle" placeholder="calle">
-					<input type="text" ng-model="formData.origen" placeholder="origen">
-					<input type="text" ng-model="formData.colonia" placeholder="colonia">
-                    <button type="submit"  ng-click="crearAsunto()">Agregar asunto</button>
-                </form>
-            </div>
-        </div>
-
-
-	
 </body>
 </html>

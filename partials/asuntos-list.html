@@ -1,0 +1,36 @@
+<div id="listado">
+    Busqueda:
+    <input ng-model="$ctrl.query" />
+    <table border="1">
+        <tr>
+            <td></td>
+            <td>Status</td>
+            <td>Folio</td>
+            <td>Fecha</td>
+            <td>Origen</td>
+            <td>descripcion</td>
+            <td>peticion</td>
+            <td>direccion</td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="asunto in todos | filter:$ctrl.query">
+            <td>semafoto</td>
+            <td>{{ asunto.status.status_nombre }}</td>
+            <td>{{ asunto.folio }}</td>
+            <td>{{ asunto.fecha }}</td>
+            <td>{{ asunto.origen }}</td>
+            <td>{{ asunto.descripcion }}</td>
+            <td>{{ asunto._peticion.nombre }}</td>
+            <td>{{ asunto.direccion_reporte.calle + " " + asunto.direccion_reporte.numero + " " + asunto.direccion_reporte.colonia }}</td>
+            <td>
+                <button type="submit" ng-click="editAsunto(asunto._id)">Editar</button>
+            </td>
+            <td>
+                <button type="submit" ng-click="deleteAsunto(asunto._id)">borrar</button>
+            </td>
+        </tr>
+    </table>
+
+      <a ng-click="crearAsunto()" class="btn btn-small">Nuevo asunto</a>
+
+</div>
