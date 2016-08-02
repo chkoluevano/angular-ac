@@ -4,7 +4,7 @@ angular.module('AtencionCiudadanaApp', ['ngRoute','AtencionCiudadanaApp.services
 .config(function ($httpProvider,$routeProvider) {
 	$routeProvider.when('/', {templateUrl: 'partials/asuntos-list.html', controller: 'asuntosController'});
 	$routeProvider.when('/asunto-detail/:id', {templateUrl: 'partials/asunto-detail.html', controller: 'asuntosControllerDetail'});
-	$routeProvider.when('/nuevo-asunto', {templateUrl: 'partials/create-asunto.html', controller: 'asuntosControllerDetailNew'});
+	$routeProvider.when('/nuevo-asunto', {templateUrl: 'partials/create-asunto.html', controller: 'asuntosControllerNew'});
 
 	/* CORS... */
   	/* http://stackoverflow.com/questions/17289195/angularjs-post-data-to-external-rest-api */

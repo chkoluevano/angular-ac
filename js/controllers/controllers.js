@@ -26,19 +26,32 @@ app.controller('asuntosController',['$scope','AsuntosFactory','AsuntoFactory','$
 
 }]);
 
+
 /* Controlador para los detalles */
 app.controller('asuntosControllerDetail', ['$scope', '$routeParams', 'AsuntoFactory', '$location',
   function ($scope, $routeParams, AsuntoFactory, $location) {
+
+    $scope.updateAsunto = function () {
+      AsuntoFactory.update({id: $routeParams.id},$scope.asunto, function(m){
+        $location.path('/');
+        //console.log(m);
+      });
+    };
+
     $scope.cancel = function () {
       $location.path('/');
     };
-    $scope.asunto = AsuntoFactory.show({id: $routeParams.id});
+    AsuntoFactory.show({id: $routeParams.id},function(m){
+        $scope.asunto = m.asunto;
+        console.log($scope.asunto);
+    });
 }]);
 
-/* Controlador para nuevo asunto */
-app.controller('asuntosControllerDetailNew', ['$scope', 'AsuntosFactory', '$location',
-  function ($scope, AsuntosFactory, $location) {
 
+
+/* Controlador para nuevo asunto */
+app.controller('asuntosControllerNew', ['$scope', 'AsuntosFactory', '$location',
+  function ($scope, AsuntosFactory, $location) {
     $scope.saveAsunto = function () {
         AsuntosFactory.create($scope.asunto,function(m){
                  $location.path('/');
