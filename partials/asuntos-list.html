@@ -4,6 +4,7 @@
     <table border="1">
         <tr>
             <td></td>
+            <td>Semaforo</td>
             <td>Status</td>
             <td>Folio</td>
             <td>Fecha</td>
@@ -14,19 +15,20 @@
             <td></td>
         </tr>
         <tr ng-repeat="asunto in todos | filter:$ctrl.query">
-            <td>semafoto</td>
+            <td>Hace {{ asunto.fecha | amDifference : null : 'days' }} Dias</td>
+            <td><div ng-class='colorSemaforo(asunto.fecha | amDifference : null : "days", asunto._peticion.dias)'>s</td>
             <td>{{ asunto.status.status_nombre }}</td>
             <td>{{ asunto.folio }}</td>
-            <td>{{ asunto.fecha }}</td>
+            <td>{{ asunto.fecha | date : 'medium'}}</td>
             <td>{{ asunto.origen }}</td>
             <td>{{ asunto.descripcion }}</td>
             <td>{{ asunto._peticion.nombre }}</td>
             <td>{{ asunto.direccion_reporte.calle + " " + asunto.direccion_reporte.numero + " " + asunto.direccion_reporte.colonia }}</td>
             <td>
-                <button type="submit" ng-click="editAsunto(asunto._id)">Editar</button>
+                <button type="submit" ng-click="editAsunto(asunto._id)">Detalles</button>
             </td>
             <td>
-                <button type="submit" ng-click="deleteAsunto(asunto._id)">borrar</button>
+                <button type="submit" ng-click="deleteAsunto(asunto._id,$index)">borrar</button>
             </td>
         </tr>
     </table>

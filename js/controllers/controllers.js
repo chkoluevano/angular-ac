@@ -4,16 +4,18 @@ var app = angular.module('AtencionCiudadanaApp.controllers', []);
 
 
 /* Controlador para la pantalla principal */
-app.controller('asuntosController',['$scope','AsuntosFactory','AsuntoFactory','$location', 
+app.controller('asuntosController',['$scope','AsuntosFactory','AsuntoFactory','$location',
     function AtencionController($scope,AsuntosFactory,AsuntoFactory,$location) {
+
         
-        $scope.deleteAsunto = function (asuntoId) {
+        $scope.deleteAsunto = function (asuntoId,index) {
             AsuntoFactory.delete({ id: asuntoId },function(m){
-                $scope.todos = AsuntosFactory.query();
+                //$scope.todos = AsuntosFactory.query();
+                if(m.status=="ok"){
+                    $scope.todos.splice(index, 1);        
+                }
             });
-
         };
-
         $scope.crearAsunto = function () {
             $location.path('/nuevo-asunto');
         };
@@ -22,7 +24,36 @@ app.controller('asuntosController',['$scope','AsuntosFactory','AsuntoFactory','$
             $location.path('/asunto-detail/' + asuntoId);
         };
 
-        $scope.todos = AsuntosFactory.query();
+        $scope.colorSemaforo=function(transcurridos,dias_peticion){
+            var semaforo = (transcurridos * 100 / Math.abs(dias_peticion));
+            /* Peticion es mayor o igual al 100% */
+            if (Math.abs(semaforo)>100){
+                return "sema-rojo";
+            }
+            else if (Math.abs(semaforo)>75){
+                return "sema-ama";
+            }
+            else{
+                return "sema-verde";
+            }
+        };  
+
+        
+
+        AsuntosFactory.query(function(m){
+            //$scope.todos = m;
+            var asuntos = [];
+            m.forEach(function(m){
+                if (m._peticion != null ){
+                    var fecha = m.fecha ;
+                    var dias  = m._peticion.dias;
+
+                }
+                asuntos.push(m);
+            })
+            $scope.todos = asuntos;
+        });
+
 
 }]);
 
@@ -34,7 +65,6 @@ app.controller('asuntosControllerDetail', ['$scope', '$routeParams', 'AsuntoFact
     $scope.updateAsunto = function () {
       AsuntoFactory.update({id: $routeParams.id},$scope.asunto, function(m){
         $location.path('/');
-        //console.log(m);
       });
     };
 
