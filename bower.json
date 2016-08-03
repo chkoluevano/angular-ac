@@ -1,0 +1,22 @@
+{
+  "name": "atencionciudadana",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "chko"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/chkoluevano/angular-ac",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-moment": "^0.10.3",
+    "angular-resource": "^1.5.8"
+  }
+}
