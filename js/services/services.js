@@ -4,7 +4,7 @@
 var services = angular.module('AtencionCiudadanaApp.services', ['ngResource']);
 var baseUrl = 'http://localhost\\:8080';
 
-
+/* Asuntos */
 services.factory('AsuntosFactory', function ($resource) {
     return $resource(baseUrl + '/asuntos', {}, {
         query: { method: 'GET', isArray: true },
@@ -19,3 +19,12 @@ services.factory('AsuntoFactory', function ($resource) {
         delete: { method: 'DELETE', isArray: false, params: {id: '@id'} }
     })
 });
+
+/* Peticiones */
+services.factory('PeticionesFactory', function ($resource) {
+    return $resource(baseUrl + '/peticiones', {}, {
+        query: { method: 'GET', isArray: true }
+	})
+});
+
+

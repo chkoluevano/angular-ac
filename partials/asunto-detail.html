@@ -1,5 +1,4 @@
 <div class="container">
-  <h1>Asunto detail</h1>
 
   <form novalidate="novalidate" class="form-horizontal">
     <div class="control-group">
@@ -10,12 +9,6 @@
       </div>
     </div>
 
-    <div class="control-group">
-      <label class="control-label" for="inputLastName">Origen:</label>
-      <div class="controls">
-        <input type="text" id="inputLastName" ng-model="asunto.origen"/>
-      </div>
-    </div>
 
      <div class="control-group">
       <label class="control-label" for="inputLastName">Status:</label>
@@ -31,28 +24,51 @@
       </div>
     </div>
 
-
-     <div class="control-group">
-      <label class="control-label" for="inputLastName">Peticion:</label>
-      <div class="controls">
-        <input type="text" id="inputLastName" ng-model="asunto._peticion.nombre"/>
+       <div class="row">
+              <div class="input-field col s6">
+                  <input type="text" id="inputLastName" ng-model="asunto.origen"/>
+              </div>
+               <div class="input-field col s6">
+                   <angucomplete id="ex1"
+                  placeholder="Peticion"
+                  selectedobject="asunto.peticion"
+                  localdata="peticiones"
+                  searchfields="nombre"
+                  titlefield="nombre"
+                  inputclass="form-control form-control-small"/>
+              </div>
       </div>
-    </div>
 
 
-     <div class="control-group">
-      <label class="control-label" for="inputLastName">calle:</label>
-      <div class="controls">
-        <input type="text" id="inputLastName" ng-model="asunto.direccion_reporte.calle"/>
+
+
+
+     <div class="row">
+              <div class="input-field col s6">
+                      <input type="text" id="inputLastName" ng-model="asunto.direccion_reporte.calle"/>
+
+              </div>
+               <div class="input-field col s6">
+                    <input type="text" id="inputLastName" ng-model="asunto.direccion_reporte.colonia"/>
+              </div>
       </div>
-    </div>
 
-  <div class="control-group">
-      <label class="control-label" for="inputLastName">colonia:</label>
-      <div class="controls">
-        <input type="text" id="inputLastName" ng-model="asunto.direccion_reporte.colonia"/>
-      </div>
-    </div>
+  {{map.dynamicMarkers}}
+    <div id="map_canvas">
+  <ui-gmap-google-map 
+     center='map.center' 
+     zoom='map.zoom'
+     dragging="map.dragging"
+     bounds="map.bounds"
+     events="map.events"
+     options="map.options"
+     pan="true"
+     control="map.control">
+      <ui-gmap-marker idKey="map.mexiIdKey" models="map.dynamicMarkers[0]" coords="'self'" icon="'icon'" click="onMarkerClicked" ></ui-gmap-marker>
+  </ui-gmap-google-map>
+ </div>
+
+
 
 
 

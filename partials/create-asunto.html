@@ -1,12 +1,47 @@
-	<div id="todo-form" class="row">
-            <div >
-                <form>
-					<input type="text" ng-model="asunto.descripcion" placeholder="descripcion">
-					<input type="text" ng-model="asunto.calle" placeholder="calle">
-					<input type="text" ng-model="asunto.origen" placeholder="origen">
-					<input type="text" ng-model="asunto.colonia" placeholder="colonia">
-                </form>
+<div id="todo-form" class="row">
+    <div>
+        <form>
+            <input type="text" ng-model="asunto.descripcion" placeholder="descripcion">
+            <div class="row">
+            	<div class="input-field col s6">
+            		<input type="text" ng-model="asunto.calle" placeholder="calle">
+            	</div>
+            	<div class="input-field col s6">
+            		<input type="text" ng-model="asunto.colonia" placeholder="colonia">
+            	</div>
             </div>
-			<a ng-click="saveAsunto()" class="btn btn-small btn-primary">Guardar</a>
+            <div class="row">
+            	<div class="input-field col s6">
+            		<angucomplete id="ex1"
+              placeholder="Peticion"
+              selectedobject="asunto.peticion"
+              localdata="peticiones"
+              searchfields="nombre"
+              titlefield="nombre"
+              inputclass="form-control form-control-small"/>
+            	</div>
+            	<div class="input-field col s6">
+            		<input type="text" ng-model="asunto.origen" placeholder="origen">
 
-        </div>
+            	</div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="map_canvas">
+	<ui-gmap-google-map 
+		center='map.center' 
+		zoom='map.zoom'
+		 dragging="map.dragging"
+         bounds="map.bounds"
+         events="map.events"
+         options="map.options"
+         pan="true"
+         control="map.control">
+ 			<ui-gmap-marker coords="map.clickedMarker"  idKey="1" options="map.clickedMarker.options"></ui-gmap-marker>
+	</ui-gmap-google-map>
+ </div>
+
+
+<a ng-click="cancel()" class="btn btn-small">cancel</a>
+<a ng-click="saveAsunto()" class="btn btn-small btn-primary">Guardar</a>
